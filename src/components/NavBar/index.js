@@ -22,12 +22,13 @@ const Nav = () => {
     <nav className="w-full pt-3 mb-16 flex-between">
       <Link href="/" className="flex gap-2 flex-center">
         <Image
-          src="/next.svg"
+          src="/logo.jpg"
           alt="logo"
-          width={30}
-          height={30}
+          width={40}
+          height={40}
           className="object-contain"
         />
+
         <p className="logo_text">SingSing</p>
       </Link>
 

@@ -32,7 +32,7 @@ const Feature = () => {
   return (
     <div className="container mx-auto  flex flex-col items-center gap-12">
       <h2 className="font-bold text-[38px]">Find the New AI Voice Models</h2>
-      <p className="text-[24px] text-gray-400">
+      <p className="text-[24px] text-gray-400 text-center">
         FineShare Singify is continuously adding new AI models to its extensive
         library.
       </p>

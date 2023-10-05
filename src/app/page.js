@@ -3,6 +3,7 @@ import HowTo from "@components/Home/HowTo";
 import Feature from "@components/Home/Feature";
 import Trending from "@components/Home/Trending";
 import TrustedBy from "@components/Home/TrustedBy";
+import BottomBanner from "@components/Home/BottomBanner";
 
 export default function Home() {
   return (
@@ -12,6 +13,7 @@ export default function Home() {
       <Feature />
       <Trending />
       <TrustedBy />
+      <BottomBanner />
     </div>
   );
 }

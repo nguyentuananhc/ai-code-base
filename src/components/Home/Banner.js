@@ -8,7 +8,7 @@ const Banner = () => {
         <h1 className="text-[48px] font-bold">
           Music Creation Has Never Been Easier
         </h1>
-        <p className="text-[24px] text-gray-400">
+        <p className="text-[24px] text-gray-400 text-center">
           Explore a vast library of 100+ AI voice models and create song covers
           with your favorite AI vocals in just one click. Spark your imaginative
           flair and ignite your passion for music creation.

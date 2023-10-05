@@ -32,7 +32,7 @@ const Trending = () => {
   return (
     <div className="container mx-auto  flex flex-col items-center gap-12">
       <h2 className="font-bold text-[38px]">See What's Trending Now</h2>
-      <p className="text-[24px] text-gray-400">
+      <p className="text-[24px] text-gray-400 text-center">
         Discover the most popular AI voice models...
       </p>
       <div className="flex justify-between items-center gap-8">

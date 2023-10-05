@@ -1,6 +1,7 @@
 import "@styles/globals.css";
 import { Inter } from "next/font/google";
 import NavBar from "@components/NavBar";
+import Footer from "@components/Footer";
 import Provider from "@components/Provider";
 import { Providers as UIProvider } from "@components/UIProvider";
 
@@ -20,6 +21,7 @@ export default function RootLayout({ children }) {
             <main className="app">
               <NavBar />
               {children}
+              <Footer />
             </main>
           </UIProvider>
         </Provider>

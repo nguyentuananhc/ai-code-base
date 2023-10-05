@@ -21,7 +21,7 @@ const HowTo = () => {
       <h2 className="font-bold text-[38px]">
         Music Creation Has Never Been Easier
       </h2>
-      <p className="text-[24px] text-gray-400">
+      <p className="text-[24px] text-gray-400 text-center">
         Create AI songs with your favorite vocals within 3 steps.
       </p>
       <ul className="flex justify-center">
