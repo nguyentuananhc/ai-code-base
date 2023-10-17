@@ -4,6 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { signIn, signOut, useSession, getProviders } from "next-auth/react";
+import { Button } from "@chakra-ui/react";
 
 const Nav = () => {
   const { data: session } = useSession();
@@ -19,21 +20,36 @@ const Nav = () => {
   }, []);
 
   return (
-    <nav className="w-full pt-3 mb-16 flex-between">
-      <Link href="/" className="flex gap-2 flex-center">
-        <Image
-          src="/logo.jpg"
-          alt="logo"
-          width={40}
-          height={40}
-          className="object-contain"
-        />
+    <nav className="flex flex-col w-full mb-16">
+      <div className="w-full flex-between h-[70px]">
+        <Link href="/" className="flex gap-2 flex-center">
+          <Image
+            src="/logo.jpg"
+            alt="logo"
+            width={40}
+            height={40}
+            className="object-contain"
+          />
 
-        <p className="logo_text">SingSing</p>
-      </Link>
+          <p className="logo_text">SingSing</p>
+        </Link>
+
+        <div className="flex gap-5 font-bold">
+          <Link href="/">Home</Link>
+          <Link href="/models">AI Model</Link>
+          <Link href="/">Trending</Link>
+        </div>
+
+        <div className="flex gap-5">
+          <Button className="text-white bg-black" variant="ghost">
+            Login
+          </Button>
+          <Button className="text-white bg-orange-500">Sign Up Free</Button>
+        </div>
+      </div>
 
       {/* Desktop Navigation */}
-      <div className="hidden sm:flex">
+      {/* <div className="hidden sm:flex">
         {session?.user ? (
           <div className="flex gap-3 md:gap-5">
             <Link href="/create-prompt" className="black_btn">
@@ -71,10 +87,10 @@ const Nav = () => {
               ))}
           </>
         )}
-      </div>
+      </div> */}
 
       {/* Mobile Navigation */}
-      <div className="relative flex sm:hidden">
+      {/* <div className="relative flex sm:hidden">
         {session?.user ? (
           <div className="flex">
             <Image
@@ -132,7 +148,7 @@ const Nav = () => {
               ))}
           </>
         )}
-      </div>
+      </div> */}
     </nav>
   );
 };

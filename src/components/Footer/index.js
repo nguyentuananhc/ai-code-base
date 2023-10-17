@@ -2,6 +2,7 @@
 
 import React from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { Input, InputGroup, Button, InputRightElement } from "@chakra-ui/react";
 
 const HERO_PRODUCT = [
@@ -24,10 +25,9 @@ const COMPANY = [
 ];
 
 const SOCIALS = [
-  { name: "", link: "" },
-  { name: "", link: "" },
-  { name: "", link: "" },
-  { name: "", link: "" },
+  { name: "Facebook", link: "/", icon: "/Facebook.svg" },
+  { name: "Youtube", link: "/", icon: "/Youtube.svg" },
+  { name: "Twitter", link: "/", icon: "/Twitter.svg" },
 ];
 
 const Form = () => {
@@ -37,15 +37,23 @@ const Form = () => {
     <div className="flex flex-col min-w-[25%] gap-2">
       <h4 className="font-semibold text-black">Join Our Newsletter</h4>
       <InputGroup size="md">
-        <Input placeholder="Please enter emails" />
-        <InputRightElement width="4.5rem">
-          <Button colorScheme="blue" size="sm" onClick={handleClick}>
+        <Input className="bg-white" placeholder="Please enter emails" />
+        <InputRightElement className="pr-2" width="4.5rem">
+          <Button
+            className="bg-orange-500 text-white"
+            size="sm"
+            onClick={handleClick}
+          >
             Submit
           </Button>
         </InputRightElement>
       </InputGroup>
-      <p className="font-semibold text-black">Follow us</p>
-      <div className="flex"></div>
+      <p className="font-semibold text-black text-[16px]">Follow us</p>
+      <div className="flex gap-1">
+        {SOCIALS.map((item) => {
+          return <Image src={item.icon} width={24} height={24} />;
+        })}
+      </div>
     </div>
   );
 };
@@ -60,7 +68,7 @@ const Footer = () => {
             <ul>
               {HERO_PRODUCT.map((item) => {
                 return (
-                  <li key={item.name} className="py-1">
+                  <li key={item.name} className="py-1 text-[16px]">
                     <Link href={item.link}> {item.name}</Link>
                   </li>
                 );
@@ -72,7 +80,7 @@ const Footer = () => {
             <ul>
               {SUPPORT.map((item) => {
                 return (
-                  <li key={item.name} className="py-1">
+                  <li key={item.name} className="py-1 text-[16px]">
                     <Link href={item.link}> {item.name}</Link>
                   </li>
                 );
@@ -84,7 +92,7 @@ const Footer = () => {
             <ul>
               {COMPANY.map((item) => {
                 return (
-                  <li key={item.name} className="py-1">
+                  <li key={item.name} className="py-1 text-[16px]">
                     <Link href={item.link}> {item.name}</Link>
                   </li>
                 );
@@ -94,7 +102,7 @@ const Footer = () => {
           <Form />
         </div>
       </div>
-      <div className="flex justify-between py-4 mt-4 border-t-2 border-gray-200">
+      <div className="text-[16px] flex justify-between py-4 mt-4 border-t-2 border-gray-200">
         <div className="flex gap-4">
           <Link href="">About Us</Link>
           <Link href="">Privacy Policy</Link>

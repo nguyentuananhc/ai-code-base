@@ -1,7 +1,16 @@
 import React from "react";
+import Title from "@components/Models/Title";
+import Filter from "@components/Models/Filter";
+import ListCard from "@components/Models/ListCard";
 
-const page = () => {
-  return <div>page</div>;
+const layout = () => {
+  return (
+    <div className="flex flex-col">
+      <Title />
+      <Filter />
+      <ListCard />
+    </div>
+  );
 };
 
-export default page;
+export default layout;
