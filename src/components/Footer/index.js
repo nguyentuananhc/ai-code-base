@@ -40,7 +40,7 @@ const Form = () => {
         <Input className="bg-white" placeholder="Please enter emails" />
         <InputRightElement className="pr-2" width="4.5rem">
           <Button
-            className="bg-orange-500 text-white"
+            className="text-white bg-orange-500"
             size="sm"
             onClick={handleClick}
           >
@@ -66,9 +66,9 @@ const Footer = () => {
           <div className="flex flex-col gap-2">
             <h4 className="font-semibold text-black">Hero Products</h4>
             <ul>
-              {HERO_PRODUCT.map((item) => {
+              {HERO_PRODUCT.map((item, index) => {
                 return (
-                  <li key={item.name} className="py-1 text-[16px]">
+                  <li key={index} className="py-1 text-[16px]">
                     <Link href={item.link}> {item.name}</Link>
                   </li>
                 );

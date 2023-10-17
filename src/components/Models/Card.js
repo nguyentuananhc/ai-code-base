@@ -12,6 +12,8 @@ import {
   Icon,
 } from "@chakra-ui/react";
 
+import Link from "next/link";
+
 import { VscPlayCircle, VscHeart, VscHeartFilled } from "react-icons/vsc";
 
 const CardItem = () => {
@@ -26,13 +28,15 @@ const CardItem = () => {
           onClick={() => setIsFavorite(!isFavorite)}
         />
 
-        <Image
-          objectFit="cover"
-          src="https://singifyai.fineshare.com/song-ai/covers/naruto-uzumaki.webp"
-          alt="Avatar"
-          borderTopRadius="lg"
-          className="w-full"
-        />
+        <Link href="/models/naruto">
+          <Image
+            objectFit="cover"
+            src="https://singifyai.fineshare.com/song-ai/covers/naruto-uzumaki.webp"
+            alt="Avatar"
+            borderTopRadius="lg"
+            className="w-full"
+          />
+        </Link>
       </div>
 
       <CardBody>
