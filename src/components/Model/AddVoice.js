@@ -9,6 +9,7 @@ import {
   Text,
 } from "@chakra-ui/react";
 import { VscMic, VscCloudUpload } from "react-icons/vsc";
+import ListVideos from "./ListVideos";
 
 const AddVoice = () => {
   const handleClick = () => {};
@@ -56,6 +57,7 @@ const AddVoice = () => {
           </Text>
         </div>
       </div>
+      <ListVideos />
     </div>
   );
 };

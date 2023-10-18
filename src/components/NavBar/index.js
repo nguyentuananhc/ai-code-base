@@ -20,7 +20,7 @@ const Nav = () => {
   }, []);
 
   return (
-    <nav className="flex flex-col w-full mb-16">
+    <nav className="fixed top-0 left-0 right-0 z-20 flex flex-col w-full px-6 mx-auto bg-white">
       <div className="w-full flex-between h-[70px]">
         <Link href="/" className="flex gap-2 flex-center">
           <Image
@@ -37,7 +37,7 @@ const Nav = () => {
         <div className="flex gap-5 font-bold">
           <Link href="/">Home</Link>
           <Link href="/models">AI Model</Link>
-          <Link href="/">Trending</Link>
+          {/* <Link href="/">Trending</Link> */}
         </div>
 
         <div className="flex gap-5">
