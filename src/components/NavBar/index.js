@@ -4,12 +4,16 @@ import Link from "next/link";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { signIn, signOut, useSession, getProviders } from "next-auth/react";
-import { Button } from "@chakra-ui/react";
+import { Button, Menu, MenuList, MenuButton, MenuItem } from "@chakra-ui/react";
+import { VscSignOut } from "react-icons/vsc";
 
 const Nav = () => {
   const { data: session } = useSession();
 
   const [providers, setProviders] = useState(null);
+
+  console.log(session);
+
   const [toggleDropdown, setToggleDropdown] = useState(false);
 
   useEffect(() => {
@@ -40,12 +44,48 @@ const Nav = () => {
           {/* <Link href="/">Trending</Link> */}
         </div>
 
-        <div className="flex gap-5">
-          <Button className="text-white bg-black" variant="ghost">
-            Login
-          </Button>
-          <Button className="text-white bg-orange-500">Sign Up Free</Button>
-        </div>
+        {session?.user ? (
+          <div className="flex gap-5">
+            <Menu>
+              <MenuButton aria-label="Options" variant="outline">
+                <span className="flex items-center justify-center w-10 h-10 bg-orange-500 rounded-full">
+                  <Image
+                    src={session?.user.image}
+                    width={37}
+                    height={37}
+                    className="rounded-full"
+                    alt="profile"
+                  />
+                </span>
+              </MenuButton>
+              <MenuList className="p-1">
+                <MenuItem>
+                  Sign in as{" "}
+                  <p className="ml-2 text-orange-500">{session?.user?.email}</p>
+                </MenuItem>
+                <MenuItem onClick={signOut} icon={<VscSignOut />}>
+                  Sign Out
+                </MenuItem>
+              </MenuList>
+            </Menu>
+          </div>
+        ) : (
+          <div className="flex gap-5">
+            {providers &&
+              Object.values(providers).map((provider) => (
+                <button
+                  type="button"
+                  key={provider.name}
+                  onClick={() => {
+                    signIn(provider.id);
+                  }}
+                  className="black_btn"
+                >
+                  Sign in
+                </button>
+              ))}
+          </div>
+        )}
       </div>
 
       {/* Desktop Navigation */}
