@@ -4,14 +4,14 @@ import React from "react";
 import { Grid, GridItem } from "@chakra-ui/react";
 import Card from "./Card";
 
-const ListCard = () => {
+const ListCard = ({ data = [] }) => {
   return (
     <Grid className="mt-8" templateColumns="repeat(4, 1fr)" gap={6}>
-      {Array(20).fill(
+      {data.map((item, index) => (
         <GridItem>
-          <Card />
+          <Card data={item} key={index} />
         </GridItem>
-      )}
+      ))}
     </Grid>
   );
 };

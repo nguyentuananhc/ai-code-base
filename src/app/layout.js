@@ -20,7 +20,7 @@ export default function RootLayout({ children }) {
         <Provider>
           <UIProvider>
             <Notice />
-            <main className="mt-20 app">
+            <main className="mt-[150px] app">
               <NavBar />
               {children}
               <Footer />

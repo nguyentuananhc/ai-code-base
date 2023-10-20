@@ -12,8 +12,6 @@ const Nav = () => {
 
   const [providers, setProviders] = useState(null);
 
-  console.log(session);
-
   const [toggleDropdown, setToggleDropdown] = useState(false);
 
   useEffect(() => {
@@ -59,8 +57,8 @@ const Nav = () => {
                 </span>
               </MenuButton>
               <MenuList className="p-1">
-                <MenuItem>
-                  Sign in as{" "}
+                <MenuItem className="flex flex-col items-start">
+                  Sign in as :
                   <p className="ml-2 text-orange-500">{session?.user?.email}</p>
                 </MenuItem>
                 <MenuItem onClick={signOut} icon={<VscSignOut />}>

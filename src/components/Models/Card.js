@@ -16,7 +16,7 @@ import Link from "next/link";
 
 import { VscPlayCircle, VscHeart, VscHeartFilled } from "react-icons/vsc";
 
-const CardItem = () => {
+const CardItem = ({ data = {} }) => {
   const [isFavorite, setIsFavorite] = React.useState(false);
   return (
     <Card maxW="sm">
@@ -28,10 +28,14 @@ const CardItem = () => {
           onClick={() => setIsFavorite(!isFavorite)}
         />
 
-        <Link href="/models/naruto">
+        <Link href={`/models/${data?.speaker_id}`}>
           <Image
+            boxSize="250px"
             objectFit="cover"
-            src="https://singifyai.fineshare.com/song-ai/covers/naruto-uzumaki.webp"
+            src={
+              data?.image ||
+              "https://singifyai.fineshare.com/song-ai/covers/naruto-uzumaki.webp"
+            }
             alt="Avatar"
             borderTopRadius="lg"
             className="w-full"
@@ -42,7 +46,7 @@ const CardItem = () => {
       <CardBody>
         <HStack spacing="3" justify="space-between" cursor="pointer">
           <Stack spacing="3">
-            <Heading size="md">Naruto</Heading>
+            <Heading size="md">{data?.name || "Naruto"}</Heading>
             <Text>5544 used</Text>
           </Stack>
           <Icon boxSize={9} as={VscPlayCircle} />
