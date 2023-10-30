@@ -13,7 +13,6 @@ export const coverSlice = createSlice({
   initialState,
   reducers: {
     getCharacters: (state, action) => {
-      console.log("action.payload", action.payload);
       state.characters = action.payload;
     },
     setCover: (state, action) => {
@@ -23,7 +22,6 @@ export const coverSlice = createSlice({
       state.loading = true; // Set loading to true when the request starts
     },
     fetchDataSuccess: (state, action) => {
-      console.log("action.payload", action.payload);
       state.characters = action?.payload?.data || [];
       state.loading = false; // Set loading to false when the request is successful
       state.error = null;

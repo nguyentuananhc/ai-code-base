@@ -2,20 +2,22 @@ import React from "react";
 import { Image, Text, Tag, Icon } from "@chakra-ui/react";
 import { VscPlayCircle, VscHeartFilled } from "react-icons/vsc";
 
-const Detail = () => {
+const Detail = ({ model }) => {
+  console.log(model);
   return (
     <div className="flex justify-between w-full">
       <div className="flex gap-4">
         <Image
           objectFit="contain"
           boxSize={40}
-          src="https://singifyai.fineshare.com/song-ai/covers/naruto-uzumaki.webp"
+          src={model?.image}
           alt="Avatar"
+          fallback="https://singifyai.fineshare.com/song-ai/covers/naruto-uzumaki.webp"
           borderRadius="md"
         />
         <div className="flex flex-col gap-4">
           <Text className="text-2xl font-bold" as="h1">
-            Naruto Uzumaki AI Song Generator
+            {model?.name} AI Song Generator
           </Text>
           <div className="flex gap-2">
             <Tag variant="outline" colorScheme="cyan">
