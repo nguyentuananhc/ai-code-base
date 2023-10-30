@@ -4,15 +4,15 @@ import Link from "next/link";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { signIn, signOut, useSession, getProviders } from "next-auth/react";
-import { Button, Menu, MenuList, MenuButton, MenuItem } from "@chakra-ui/react";
+import { Menu, MenuList, MenuButton, MenuItem } from "@chakra-ui/react";
 import { VscSignOut } from "react-icons/vsc";
+
+import Notice from "@components/Notice";
 
 const Nav = () => {
   const { data: session } = useSession();
 
   const [providers, setProviders] = useState(null);
-
-  const [toggleDropdown, setToggleDropdown] = useState(false);
 
   useEffect(() => {
     (async () => {
@@ -22,72 +22,76 @@ const Nav = () => {
   }, []);
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-20 flex flex-col w-full px-6 mx-auto bg-white">
-      <div className="w-full flex-between h-[70px]">
-        <Link href="/" className="flex gap-2 flex-center">
-          <Image
-            src="/logo.jpg"
-            alt="logo"
-            width={40}
-            height={40}
-            className="object-contain"
-          />
+    <>
+      <nav className="fixed top-0 left-0 right-0 z-20 flex flex-col w-full mx-auto bg-white">
+        <Notice />
+        <div className="w-full flex-between h-[70px] px-6">
+          <Link href="/" className="flex gap-2 flex-center">
+            <Image
+              src="/logo.jpg"
+              alt="logo"
+              width={40}
+              height={40}
+              className="object-contain"
+            />
 
-          <p className="logo_text">SingSing</p>
-        </Link>
+            <p className="logo_text">SingSing</p>
+          </Link>
 
-        <div className="flex gap-5 font-bold">
-          <Link href="/">Home</Link>
-          <Link href="/models">AI Model</Link>
-          {/* <Link href="/">Trending</Link> */}
+          <div className="flex gap-5 font-bold">
+            <Link href="/">Home</Link>
+            <Link href="/models">AI Model</Link>
+            {/* <Link href="/">Trending</Link> */}
+          </div>
+
+          {session?.user ? (
+            <div className="flex gap-5">
+              <Menu>
+                <MenuButton aria-label="Options" variant="outline">
+                  <span className="flex items-center justify-center w-10 h-10 bg-orange-500 rounded-full">
+                    <Image
+                      src={session?.user.image}
+                      width={37}
+                      height={37}
+                      className="rounded-full"
+                      alt="profile"
+                    />
+                  </span>
+                </MenuButton>
+                <MenuList className="p-1">
+                  <MenuItem className="flex flex-col items-start">
+                    Sign in as :
+                    <p className="ml-2 text-orange-500">
+                      {session?.user?.email}
+                    </p>
+                  </MenuItem>
+                  <MenuItem onClick={signOut} icon={<VscSignOut />}>
+                    Sign Out
+                  </MenuItem>
+                </MenuList>
+              </Menu>
+            </div>
+          ) : (
+            <div className="flex gap-5">
+              {providers &&
+                Object.values(providers).map((provider) => (
+                  <button
+                    type="button"
+                    key={provider.name}
+                    onClick={() => {
+                      signIn(provider.id);
+                    }}
+                    className="black_btn"
+                  >
+                    Sign in
+                  </button>
+                ))}
+            </div>
+          )}
         </div>
 
-        {session?.user ? (
-          <div className="flex gap-5">
-            <Menu>
-              <MenuButton aria-label="Options" variant="outline">
-                <span className="flex items-center justify-center w-10 h-10 bg-orange-500 rounded-full">
-                  <Image
-                    src={session?.user.image}
-                    width={37}
-                    height={37}
-                    className="rounded-full"
-                    alt="profile"
-                  />
-                </span>
-              </MenuButton>
-              <MenuList className="p-1">
-                <MenuItem className="flex flex-col items-start">
-                  Sign in as :
-                  <p className="ml-2 text-orange-500">{session?.user?.email}</p>
-                </MenuItem>
-                <MenuItem onClick={signOut} icon={<VscSignOut />}>
-                  Sign Out
-                </MenuItem>
-              </MenuList>
-            </Menu>
-          </div>
-        ) : (
-          <div className="flex gap-5">
-            {providers &&
-              Object.values(providers).map((provider) => (
-                <button
-                  type="button"
-                  key={provider.name}
-                  onClick={() => {
-                    signIn(provider.id);
-                  }}
-                  className="black_btn"
-                >
-                  Sign in
-                </button>
-              ))}
-          </div>
-        )}
-      </div>
-
-      {/* Desktop Navigation */}
-      {/* <div className="hidden sm:flex">
+        {/* Desktop Navigation */}
+        {/* <div className="hidden sm:flex">
         {session?.user ? (
           <div className="flex gap-3 md:gap-5">
             <Link href="/create-prompt" className="black_btn">
@@ -127,8 +131,8 @@ const Nav = () => {
         )}
       </div> */}
 
-      {/* Mobile Navigation */}
-      {/* <div className="relative flex sm:hidden">
+        {/* Mobile Navigation */}
+        {/* <div className="relative flex sm:hidden">
         {session?.user ? (
           <div className="flex">
             <Image
@@ -187,7 +191,8 @@ const Nav = () => {
           </>
         )}
       </div> */}
-    </nav>
+      </nav>
+    </>
   );
 };
 

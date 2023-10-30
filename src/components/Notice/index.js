@@ -10,7 +10,7 @@ const Notice = () => {
   if (isClose) return null;
 
   return (
-    <div className="fixed top-[56px] left-0 right-0 z-20 flex justify-center w-full p-4 align-middle bg-orange-50">
+    <div className="left-0 right-0 z-20 flex justify-center w-full p-4 align-middle  bg-orange-50">
       <div className="flex justify-center w-full gap-4 align-middle">
         <Icon as={VscUnmute} boxSize={6} />
         <h3 className="font-semibold">

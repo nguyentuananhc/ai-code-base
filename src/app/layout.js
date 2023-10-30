@@ -4,6 +4,7 @@ import Footer from "@components/Footer";
 import Provider from "@components/Provider";
 import Notice from "@components/Notice";
 import { Providers as UIProvider } from "@components/UIProvider";
+import { ReduxProvider } from "@redux/provider";
 import "@styles/globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -17,16 +18,18 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={inter.className}>
-        <Provider>
-          <UIProvider>
-            <Notice />
-            <main className="mt-[150px] app">
-              <NavBar />
-              {children}
-              <Footer />
-            </main>
-          </UIProvider>
-        </Provider>
+        <ReduxProvider>
+          <Provider>
+            <UIProvider>
+              <Notice />
+              <main className="mt-[150px] app">
+                <NavBar />
+                {children}
+                <Footer />
+              </main>
+            </UIProvider>
+          </Provider>
+        </ReduxProvider>
       </body>
     </html>
   );

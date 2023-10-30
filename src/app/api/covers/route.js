@@ -15,11 +15,38 @@ async function getListCharacters() {
   return jsonData;
 }
 
+async function createCoverRequest() {
+  const response = await fetch(
+    `${process.env.API_ENDPOINT}/api/process_youtube`,
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
+      },
+      body: new URLSearchParams({
+        skip_encrypt_token: process.env.SKIP_ENCRYPT_TOKEN,
+        youtube_url: "",
+        speaker_id: "",
+      }),
+    }
+  );
+  const jsonData = await response.json();
+  return jsonData;
+}
+
 export const GET = async (request) => {
   try {
     const characters = await getListCharacters();
 
     return new Response(JSON.stringify(characters), { status: 200 });
+  } catch (error) {
+    return new Response("Failed to fetch all characters", { status: 500 });
+  }
+};
+
+export const POST = async (request) => {
+  try {
+    return new Response(JSON.stringify({ data: "" }), { status: 200 });
   } catch (error) {
     return new Response("Failed to fetch all characters", { status: 500 });
   }
