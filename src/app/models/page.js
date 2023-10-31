@@ -5,14 +5,14 @@ import Filter from "@components/Models/Filter";
 import ListCard from "@components/Models/ListCard";
 import { Spinner } from "@chakra-ui/react";
 import { useSelector, useDispatch } from "react-redux";
-import { fetchCovers } from "@redux/features/cover/actions";
+import { fetchModels } from "@redux/features/cover/actions";
 
 const layout = () => {
   const dispatch = useDispatch();
   const { loading } = useSelector((state) => state.covers);
 
   useEffect(() => {
-    dispatch(fetchCovers());
+    dispatch(fetchModels());
   }, [dispatch]);
 
   return (

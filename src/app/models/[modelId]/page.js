@@ -3,7 +3,7 @@ import React, { useEffect } from "react";
 import Detail from "src/components/Model/Detail";
 import AddVoice from "@components/Model/AddVoice";
 import { useSelector, useDispatch } from "react-redux";
-import { fetchCovers } from "@redux/features/cover/actions";
+import { fetchModels } from "@redux/features/cover/actions";
 
 const model = ({ params }) => {
   const dispatch = useDispatch();
@@ -11,7 +11,7 @@ const model = ({ params }) => {
   const { modelId } = params;
 
   useEffect(() => {
-    dispatch(fetchCovers());
+    dispatch(fetchModels());
   }, [dispatch]);
 
   const model = characters.find(

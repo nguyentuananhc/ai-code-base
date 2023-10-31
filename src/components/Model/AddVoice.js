@@ -1,18 +1,78 @@
 "use client";
-import React from "react";
+
+import React, { useEffect, useState } from "react";
 import {
   Input,
   InputGroup,
   Button,
   InputRightElement,
+  InputLeftElement,
   Icon,
   Text,
 } from "@chakra-ui/react";
 import { VscMic, VscCloudUpload } from "react-icons/vsc";
-import ListVideos from "./ListVideos";
+import { TfiYoutube } from "react-icons/tfi";
+import { useParams } from "next/navigation";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  createCoversRequest,
+  getCoversRequest,
+} from "@redux/features/cover/actions";
+import { useToast } from "@chakra-ui/react";
+
+// import ListVideos from "./ListVideos";
+import Request from "./Request";
 
 const AddVoice = () => {
-  const handleClick = () => {};
+  const dispatch = useDispatch();
+
+  const toast = useToast();
+  const [isButtonDisabled, setIsButtonDisabled] = useState(false);
+  const [url, setUrl] = useState("https://www.youtube.com/watch?v=jpTGDGxmOig");
+  const { request } = useSelector((state) => state.covers);
+  const params = useParams();
+  const { modelId } = params;
+
+  const handleClick = () => {
+    setIsButtonDisabled(true);
+    dispatch(
+      createCoversRequest({
+        speakerId: modelId,
+        youtubeUrl: url,
+      })
+    ).then((res) => {
+      if (res?.error_code) {
+        toast({
+          title: "Error",
+          description: res?.error_message,
+          status: "error",
+          duration: 3000,
+          isClosable: true,
+          position: "top",
+        });
+      } else {
+        console.log(request);
+      }
+    });
+    setTimeout(() => {
+      setIsButtonDisabled(false);
+    }, 3000);
+  };
+
+  const handleUrlChange = (e) => {
+    setUrl(e.target.value);
+  };
+
+  // useEffect(() => {
+  //   if (request?.request_id)
+  //     dispatch(
+  //       getCoversRequest({
+  //         requestId: request?.request_id,
+  //         token: request?.token,
+  //       })
+  //     );
+  // }, [request?.request_id]);
+
   return (
     <div className="flex flex-col w-full gap-4 text-center">
       <h2 className="text-3xl font-bold">Please Add Your Audio</h2>
@@ -20,21 +80,28 @@ const AddVoice = () => {
         You can add YouTube songs, upload audio files, or record your voice.
       </p>
       <InputGroup size="lg">
+        <InputLeftElement className="pr-2" width="60px">
+          <Icon boxSize={8} as={TfiYoutube} />
+        </InputLeftElement>
         <Input
+          onChange={handleUrlChange}
           className="bg-white"
           placeholder="Search or paste YouTube link here"
+          value={url}
         />
         <InputRightElement className="pr-2" width="160px">
           <Button
             className="w-full text-white bg-orange-500"
             size="md"
             onClick={handleClick}
+            isDisabled={!url && isButtonDisabled}
           >
-            Search
+            Generate Song
           </Button>
         </InputRightElement>
       </InputGroup>
-      <h2 className="text-3xl font-bold text-gray-400">OR</h2>
+      {request?.request_id && <Request />}
+      {/* <h2 className="text-3xl font-bold text-gray-400">OR</h2>
 
       <div className="border-[2px] border-dashed border-[#d8d8d8] p-20 rounded-2xl flex items-center justify-between gap-10">
         <div className="flex flex-col items-center gap-4 p-8 cursor-pointer hover:bg-orange-50 rounded-xl">
@@ -57,7 +124,7 @@ const AddVoice = () => {
           </Text>
         </div>
       </div>
-      <ListVideos />
+      <ListVideos /> */}
     </div>
   );
 };

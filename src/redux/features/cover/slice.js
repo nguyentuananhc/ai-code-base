@@ -6,6 +6,7 @@ const initialState = {
     data: "",
   },
   loading: false,
+  request: {},
 };
 
 export const coverSlice = createSlice({
@@ -16,7 +17,7 @@ export const coverSlice = createSlice({
       state.characters = action.payload;
     },
     setCover: (state, action) => {
-      state.cover = action.payload;
+      state.cover = action.payload.data;
     },
     fetchDataStart: (state) => {
       state.loading = true; // Set loading to true when the request starts
@@ -30,6 +31,18 @@ export const coverSlice = createSlice({
       state.loading = false; // Set loading to false on failure
       state.error = action?.payload?.error_message || "Something went wrong";
     },
+    createCoverSuccess: (state, action) => {
+      state.request = action?.payload?.data || {};
+    },
+    createCoverFailure: (state, action) => {
+      state.request = action.payload;
+    },
+    getCoversSuccess: (state, action) => {
+      state.request = action.payload;
+    },
+    getCoversFailure: (state, action) => {
+      state.request = action.payload;
+    },
   },
 });
 
@@ -39,6 +52,8 @@ export const {
   fetchDataStart,
   fetchDataSuccess,
   fetchDataFailure,
+  createCoverSuccess,
+  createCoverFailure,
 } = coverSlice.actions;
 
 export const selectCover = (state) => state.cover;

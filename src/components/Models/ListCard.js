@@ -2,7 +2,7 @@
 
 import React from "react";
 import { Grid, GridItem } from "@chakra-ui/react";
-import { useSelector } from "react-redux"; // import { fetchCovers } from "@redux/features/cover/actions";
+import { useSelector } from "react-redux"; // import { fetchModels } from "@redux/features/cover/actions";
 import Card from "./Card";
 
 const ListCard = () => {

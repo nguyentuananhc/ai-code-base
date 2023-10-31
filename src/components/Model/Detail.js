@@ -3,7 +3,6 @@ import { Image, Text, Tag, Icon } from "@chakra-ui/react";
 import { VscPlayCircle, VscHeartFilled } from "react-icons/vsc";
 
 const Detail = ({ model }) => {
-  console.log(model);
   return (
     <div className="flex justify-between w-full">
       <div className="flex gap-4">
@@ -12,7 +11,6 @@ const Detail = ({ model }) => {
           boxSize={40}
           src={model?.image}
           alt="Avatar"
-          fallback="https://singifyai.fineshare.com/song-ai/covers/naruto-uzumaki.webp"
           borderRadius="md"
         />
         <div className="flex flex-col gap-4">

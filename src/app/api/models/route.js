@@ -1,6 +1,6 @@
-async function createCoverRequest({ youtubeUrl, speakerId }) {
+async function getListCharacters() {
   const response = await fetch(
-    `${process.env.API_ENDPOINT}/api/process_youtube`,
+    `${process.env.API_ENDPOINT}api/get_characters`,
     {
       method: "POST",
       headers: {
@@ -8,8 +8,6 @@ async function createCoverRequest({ youtubeUrl, speakerId }) {
       },
       body: new URLSearchParams({
         skip_encrypt_token: process.env.SKIP_ENCRYPT_TOKEN,
-        youtube_url: youtubeUrl,
-        speaker_id: speakerId,
       }),
     }
   );
@@ -17,12 +15,11 @@ async function createCoverRequest({ youtubeUrl, speakerId }) {
   return jsonData;
 }
 
-export const POST = async (request) => {
-  const { youtubeUrl, speakerId } = await request.json();
+export const GET = async () => {
   try {
-    const cover = await createCoverRequest({ youtubeUrl, speakerId });
+    const characters = await getListCharacters();
 
-    return new Response(JSON.stringify(cover), { status: 200 });
+    return new Response(JSON.stringify(characters), { status: 200 });
   } catch (error) {
     return new Response("Failed to fetch all characters", { status: 500 });
   }
