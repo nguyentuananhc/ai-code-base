@@ -10,13 +10,13 @@ const model = ({ params }) => {
   const { characters } = useSelector((state) => state.covers);
   const { modelId } = params;
 
-  useEffect(() => {
-    dispatch(fetchModels());
-  }, [dispatch]);
-
   const model = characters.find(
     (item) => Number(item.speaker_id) === Number(modelId)
   );
+
+  useEffect(() => {
+    dispatch(fetchModels());
+  }, [dispatch]);
 
   return (
     <div className="container flex flex-col items-center gap-4 p-8 mx-auto bg-white shadow-sm rounded-2xl">

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import {
   Input,
   InputGroup,
@@ -8,16 +8,12 @@ import {
   InputRightElement,
   InputLeftElement,
   Icon,
-  Text,
 } from "@chakra-ui/react";
 import { VscMic, VscCloudUpload } from "react-icons/vsc";
 import { TfiYoutube } from "react-icons/tfi";
 import { useParams } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  createCoversRequest,
-  getCoversRequest,
-} from "@redux/features/cover/actions";
+import { createCoversRequest } from "@redux/features/cover/actions";
 import { useToast } from "@chakra-ui/react";
 
 // import ListVideos from "./ListVideos";
@@ -41,6 +37,7 @@ const AddVoice = () => {
         youtubeUrl: url,
       })
     ).then((res) => {
+      setIsButtonDisabled(false);
       if (res?.error_code) {
         toast({
           title: "Error",
@@ -51,33 +48,28 @@ const AddVoice = () => {
           position: "top",
         });
       } else {
-        console.log(request);
+        toast({
+          title: "Success",
+          description: "Your request has been created",
+          status: "success",
+          duration: 3000,
+          isClosable: true,
+          position: "top",
+        });
       }
     });
-    setTimeout(() => {
-      setIsButtonDisabled(false);
-    }, 3000);
   };
 
   const handleUrlChange = (e) => {
     setUrl(e.target.value);
   };
 
-  // useEffect(() => {
-  //   if (request?.request_id)
-  //     dispatch(
-  //       getCoversRequest({
-  //         requestId: request?.request_id,
-  //         token: request?.token,
-  //       })
-  //     );
-  // }, [request?.request_id]);
-
   return (
     <div className="flex flex-col w-full gap-4 text-center">
       <h2 className="text-3xl font-bold">Please Add Your Audio</h2>
       <p>
-        You can add YouTube songs, upload audio files, or record your voice.
+        You can add YouTube songs
+        {/* You can add YouTube songs, upload audio files, or record your voice. */}
       </p>
       <InputGroup size="lg">
         <InputLeftElement className="pr-2" width="60px">
@@ -94,7 +86,9 @@ const AddVoice = () => {
             className="w-full text-white bg-orange-500"
             size="md"
             onClick={handleClick}
-            isDisabled={!url && isButtonDisabled}
+            isDisabled={!url || isButtonDisabled}
+            loadingText="Generating"
+            isLoading={isButtonDisabled}
           >
             Generate Song
           </Button>

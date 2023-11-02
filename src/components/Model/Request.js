@@ -11,7 +11,9 @@ const Request = () => {
   const { request, characters } = useSelector((state) => state.covers);
   const router = useRouter();
   const handleClick = () => {
-    router.push(`/covers/${request?.request_id}`);
+    router.push(
+      `/covers/${request?.request_id}?token=${request.token}&modelId=${modelId}`
+    );
   };
 
   const model = characters.find(
