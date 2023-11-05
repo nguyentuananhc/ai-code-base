@@ -24,7 +24,7 @@ const Nav = () => {
   return (
     <>
       <nav className="fixed top-0 left-0 right-0 z-20 flex flex-col w-full mx-auto bg-white">
-        <Notice />
+        {!session?.user && <Notice />}
         <div className="w-full flex-between h-[70px] px-6">
           <Link href="/" className="flex gap-2 flex-center">
             <Image
