@@ -5,12 +5,14 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import { signIn, signOut, useSession, getProviders } from "next-auth/react";
 import { Menu, MenuList, MenuButton, MenuItem } from "@chakra-ui/react";
-import { VscSignOut } from "react-icons/vsc";
+import { VscSignOut, VscCreditCard } from "react-icons/vsc";
 
 import Notice from "@components/Notice";
 
 const Nav = () => {
   const { data: session } = useSession();
+
+  console.log(session);
 
   const [providers, setProviders] = useState(null);
 
@@ -28,14 +30,14 @@ const Nav = () => {
         <div className="w-full flex-between h-[70px] px-6">
           <Link href="/" className="flex gap-2 flex-center">
             <Image
-              src="/logo.jpg"
+              src="/logo.svg"
               alt="logo"
               width={40}
               height={40}
-              className="object-contain"
+              className="object-contain rounded-full"
             />
 
-            <p className="logo_text">SingSing</p>
+            <p className="logo_text">Cover Sing</p>
           </Link>
 
           <div className="flex gap-5 font-bold">
@@ -64,6 +66,9 @@ const Nav = () => {
                     <p className="ml-2 text-orange-500">
                       {session?.user?.email}
                     </p>
+                  </MenuItem>
+                  <MenuItem icon={<VscCreditCard />}>
+                    <b>{session?.user?.credit}</b>
                   </MenuItem>
                   <MenuItem onClick={signOut} icon={<VscSignOut />}>
                     Sign Out

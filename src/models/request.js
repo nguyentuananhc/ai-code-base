@@ -11,7 +11,7 @@ const RequestSchema = new Schema({
   },
   requestId: {
     type: String,
-    required: [true, "Id is required."],
+    required: [true, "Request ID is required."],
   },
 });
 

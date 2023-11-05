@@ -12,6 +12,11 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata = {
   title: "AI Song Generator",
   description: "AI Song Generator",
+  icons: {
+    icon: ["/favicon.ico?v=4"],
+    apple: ["/apple-touch-icon.png?v=4"],
+    shortcut: ["/apple-touch-icon.png"],
+  },
 };
 
 export default function RootLayout({ children }) {

@@ -51,7 +51,15 @@ const Form = () => {
       <p className="font-semibold text-black text-[16px]">Follow us</p>
       <div className="flex gap-1">
         {SOCIALS.map((item, index) => {
-          return <Image key={index} src={item.icon} width={24} height={24} />;
+          return (
+            <Image
+              alt="social icon"
+              key={index}
+              src={item.icon}
+              width={24}
+              height={24}
+            />
+          );
         })}
       </div>
     </div>
