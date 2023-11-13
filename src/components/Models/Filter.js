@@ -58,7 +58,7 @@ const Filter = () => {
           </Button>
         </InputRightElement>
       </InputGroup>
-      <div className="flex mt-4 justify-between">
+      {/* <div className="flex mt-4 justify-between">
         <div className="flex gap-2">
           {CATEGORY.map((item, index) => {
             return (
@@ -87,7 +87,7 @@ const Filter = () => {
             })}
           </Select>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };

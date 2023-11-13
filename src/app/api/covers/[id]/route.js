@@ -1,17 +1,26 @@
+import Request from "@models/request";
+
 export const GET = async (request, { params }) => {
   // get the request id from the url
   const requestId = params.id;
-
+  const filter = { requestId };
+  const coverRequest = await Request.findOne(filter);
   // get query params from query string
-  const url = new URL(request.url);
-  const token = url.searchParams.get("token");
+  // const url = new URL(request.url);
+  // const token = url.searchParams.get("token");
 
   try {
     const cover = await getCoverRequest({
-      token,
+      token: coverRequest.token,
       requestId,
     });
-    return new Response(JSON.stringify(cover), { status: 200 });
+    return new Response(
+      JSON.stringify({
+        ...cover,
+        data: { ...cover.data, songTitle: coverRequest.songTitle },
+      }),
+      { status: 200 }
+    );
   } catch (error) {
     return new Response(error, {
       status: 500,

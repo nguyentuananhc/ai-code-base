@@ -13,8 +13,12 @@ const RequestSchema = new Schema({
     type: String,
     required: [true, "Request ID is required."],
   },
+  songTitle: {
+    type: String,
+    required: [true, "Song title is required."],
+  },
 });
 
-const Request = models.Cover || model("Request", RequestSchema);
+const Request = models.Request || model("Request", RequestSchema);
 
 export default Request;

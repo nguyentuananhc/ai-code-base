@@ -13,8 +13,8 @@ export const metadata = {
   title: "AI Song Generator",
   description: "AI Song Generator",
   icons: {
-    icon: ["/favicon.ico?v=4"],
-    apple: ["/apple-touch-icon.png?v=4"],
+    icon: ["/favicon.ico"],
+    apple: ["/apple-touch-icon.png"],
     shortcut: ["/apple-touch-icon.png"],
   },
 };

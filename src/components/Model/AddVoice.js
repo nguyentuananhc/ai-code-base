@@ -9,22 +9,24 @@ import {
   InputLeftElement,
   Icon,
 } from "@chakra-ui/react";
-import { VscMic, VscCloudUpload } from "react-icons/vsc";
+// import { VscMic, VscCloudUpload } from "react-icons/vsc";
 import { TfiYoutube } from "react-icons/tfi";
 import { useParams } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
 import { createCoversRequest } from "@redux/features/cover/actions";
 import { useToast } from "@chakra-ui/react";
+import { useRouter } from "next/navigation";
 
 // import ListVideos from "./ListVideos";
-import Request from "./Request";
+// import Request from "./Request";
 
 const AddVoice = () => {
   const dispatch = useDispatch();
+  const router = useRouter();
 
   const toast = useToast();
   const [isButtonDisabled, setIsButtonDisabled] = useState(false);
-  const [url, setUrl] = useState("https://www.youtube.com/watch?v=jpTGDGxmOig");
+  const [url, setUrl] = useState("https://www.youtube.com/watch?v=6EEW-9NDM5k");
   const { request } = useSelector((state) => state.covers);
   const params = useParams();
   const { modelId } = params;
@@ -65,7 +67,7 @@ const AddVoice = () => {
   };
 
   return (
-    <div className="flex flex-col w-full gap-4 text-center">
+    <div className="flex flex-col w-full gap-4 text-center items-center justify-center">
       <h2 className="text-3xl font-bold">Please Add Your Audio</h2>
       <p>
         You can add YouTube songs
@@ -94,7 +96,17 @@ const AddVoice = () => {
           </Button>
         </InputRightElement>
       </InputGroup>
-      {request?.request_id && <Request />}
+      {request?.request_id && (
+        <Button
+          className="w-56 text-white bg-orange-500"
+          size="md"
+          onClick={() =>
+            router.push(`/covers/${request?.request_id}?modelId=${modelId}`)
+          }
+        >
+          View Request
+        </Button>
+      )}
       {/* <h2 className="text-3xl font-bold text-gray-400">OR</h2>
 
       <div className="border-[2px] border-dashed border-[#d8d8d8] p-20 rounded-2xl flex items-center justify-between gap-10">

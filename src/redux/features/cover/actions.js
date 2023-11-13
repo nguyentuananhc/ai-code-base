@@ -36,11 +36,11 @@ export const createCoversRequest =
   };
 
 export const getCoversRequest =
-  ({ requestId, token }) =>
+  ({ requestId }) =>
   async (dispatch) => {
     try {
       const response = await request.get(`/api/covers/${requestId}`, {
-        params: { token, requestId },
+        params: { requestId },
       });
       dispatch(setCover(response.data));
     } catch (error) {}
